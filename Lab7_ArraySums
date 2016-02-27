@@ -1,0 +1,81 @@
+;Boiler Plate
+;Lab7_ArraySums
+
+.class public Lab7_ArraySums
+.super java/lang/Object
+
+.method public <init>()V
+    aload_0
+    invokespecial java/lang/Object/<init>()V
+    return
+.end method
+
+.method public static main([Ljava.lang.String;)V
+    .limit stack 10
+
+    .limit locals 6
+
+    ;holds the limit counter
+    aload_0
+    iconst_0
+    invokestatic java/lang/Integer/parseInt(Ljava/lang/String;)I
+    istore_1
+
+;hold the 1,2,3,4
+    iload_1
+    newarray int
+    astore_2
+
+;holds the 1,3,6,10
+    iload_1
+    newarray int
+    astore_3
+
+;is the counter
+    iconst_0
+    istore_4
+
+;holds the sum
+
+    iconst_0
+    istore_5
+
+Loop:
+    aload_2   ; load the array
+    iload_4   ;load the location
+    iload_4   ;load the value (which is the same as the location)
+    iastore_2   ;set array[location] = value
+    iload_4
+    iconst_1
+    iadd
+
+    aload_3     ;load the array
+    iload_4     ;loads the location(the counter)
+    iload_5     ;loads the sum
+    iastore_3
+
+    iload_4  ;adds counter to the sum
+    iload_5
+    iadd
+
+    goto PrintArray
+
+    iload_4   ;are we done yet (is location >= n)
+    iload_1
+    if_icmplt Loop
+return
+
+PrintArray:
+;prints both current array values
+    getstatic java/lang/System/out Ljava/io/PrintStream;
+
+    aload_2
+    iload_4
+    invokevirtual java/io/PrintStream/println(I)V
+
+    getstatic java/lang/System/out Ljava/io/PrintStream;
+
+    aload_3
+    iload_4
+    invokevirtual java/io/PrintStream/println(I)V
+.end method
