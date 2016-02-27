@@ -1,4 +1,5 @@
-;Boiler Plate
+
+;boiler Plate
 ;Lab7_ArraySums
 
 .class public Lab7_ArraySums
@@ -18,6 +19,7 @@
     ;holds the limit counter
     aload_0
     iconst_0
+    aaload
     invokestatic java/lang/Integer/parseInt(Ljava/lang/String;)I
     istore_1
 
@@ -33,35 +35,35 @@
 
 ;is the counter
     iconst_0
-    istore_4
+    istore 4
 
 ;holds the sum
 
     iconst_0
-    istore_5
+    istore 5
 
 Loop:
-    aload_2   ; load the array
-    iload_4   ;load the location
-    iload_4   ;load the value (which is the same as the location)
-    iastore_2   ;set array[location] = value
-    iload_4
+    aload_2     ; load the array
+    iload 4     ;load the location
+    iload 4     ;load the value (which is the same as the location)
+    iastore     ;set array[location] = value
+    iload 4
     iconst_1
     iadd
 
     aload_3     ;load the array
-    iload_4     ;loads the location(the counter)
-    iload_5     ;loads the sum
-    iastore_3
+    iload 4     ;loads the location(the counter)
+    iload 5     ;loads the sum
+    iastore
 
-    iload_4  ;adds counter to the sum
-    iload_5
+    iload 4     ;adds counter to the sum
+    iload 5
     iadd
 
     goto PrintArray
 
-    iload_4   ;are we done yet (is location >= n)
-    iload_1
+    iload 4     ;are we done yet (is location >= n)
+    iload 1
     if_icmplt Loop
 return
 
@@ -70,12 +72,13 @@ PrintArray:
     getstatic java/lang/System/out Ljava/io/PrintStream;
 
     aload_2
-    iload_4
+    iload 4
     invokevirtual java/io/PrintStream/println(I)V
 
     getstatic java/lang/System/out Ljava/io/PrintStream;
 
     aload_3
-    iload_4
+    iload 4
     invokevirtual java/io/PrintStream/println(I)V
 .end method
+                
