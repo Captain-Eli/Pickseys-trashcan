@@ -1,4 +1,3 @@
-
 ;boiler Plate
 ;Lab7_ArraySums
 
@@ -20,7 +19,7 @@
     aload_0
     iconst_0
     aaload
-    invokestatic java/lang/Integer/parseInt(Ljava/lang/String;)I
+    invokestatic java/lang/Integer.parseInt(Ljava/lang/String;)I
     istore_1
 
 ;hold the 1,2,3,4
@@ -75,10 +74,7 @@ PrintArray:
     iload 4
     invokevirtual java/io/PrintStream/println(I)V
 
-    getstatic java/lang/System/out Ljava/io/PrintStream;
-
     aload_3
     iload 4
     invokevirtual java/io/PrintStream/println(I)V
 .end method
-                
