@@ -1,0 +1,119 @@
+;Lab8_NameAgeArr.j
+;creates an array of objects and prints it out
+.class public Lab8_NameAgeArr
+.super java/lang/Object
+
+;boiler plate
+.method public <init>()V
+    aload_0
+    invokespecial java/lang/Object/<init>()V
+    return
+.end method
+
+.method public static main([Ljava/lang/String;)V
+    .limit stack 4
+    .limit locals 6
+
+
+;test to see if the the array has at least two inputs
+    aload_0
+    arraylength
+    iconst_2
+    if_icmpeq EndError
+
+;local 1 holds the object array
+;local 2 holds the location to pull from the string array
+;local 3 holds the location to place the object in the array or local 1
+;local 4 holds the object before its stored in the object array
+;local 5 holds the limit of the loop
+
+;creates an array of object half the size of the inputted array
+    aload_0
+    arraylength
+    anewarray Ljava/lang/String;
+    astore_1
+
+;creates the counter
+    iconst_0
+    istore_2
+;creates the location for objecct array
+    iconst_0
+    istore_3
+;creates loop limit
+    aload_0
+    arraylength
+    iconst_1
+    isub
+    istore 5
+
+Loop:
+
+    iload_2
+    if_icmplt End
+;creates the object
+    new NameAge
+    dup
+    invokespecial NameAge/<init>()V
+    astore 4
+
+;places the name in object
+    aload 4
+    aload_0
+    iload_2
+    aaload
+    putfield NameAge/name Ljava/lang/String;
+
+
+;increments place in string array
+    iload_2
+    iconst_1
+    iadd
+    istore_2
+
+;places the age in object
+    aload 4
+    aload_0
+    iload_2
+    aaload
+    invokestatic java/lang/Integer.parseInt(Ljava/lang/String;)I
+    putfield NameAge/age I
+
+
+;stores object in array
+;   aload_1
+;   iload_3
+;   aload 4
+;   aastore
+
+;prints from  object Array
+;getstatic java/lang/System/out Ljava/io/PrintStream;
+;   aload 4
+;   getfield NameAge/name Ljava/lang/String;
+;   invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V
+
+getstatic java/lang/System/out Ljava/io/PrintStream;
+
+    getfield NameAge/age I
+    invokevirtual java/io/PrintStream/println(I)V
+
+;increments object Array counter
+    iload_3
+    iconst_1
+    iadd
+    istore_3
+
+;   increments the place in the string array
+    iload_2
+    iconst_1
+    iadd
+    istore_2
+
+;loops the method
+    goto Loop
+EndError:
+getstatic java/lang/System/out Ljava/io/PrintStream;
+    ldc "input at least one name and one age"
+    invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+End:
+    return
+.end method
